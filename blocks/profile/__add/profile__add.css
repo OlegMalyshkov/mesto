@@ -1,0 +1,20 @@
+.profile__add {
+  max-width: 22px;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  padding: 14px 64px;
+  align-self: center;
+}
+
+.profile__add:hover {
+  opacity: 0.5;
+  transition: 1s ease;
+}
+
+@media screen and (max-width: 900px) {
+  .profile__add {
+    max-width: 16px;
+    padding: 17px 132px 17px 134px;
+    margin-top: 53px;
+  }
+}
