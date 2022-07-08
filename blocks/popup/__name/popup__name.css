@@ -1,0 +1,14 @@
+.popup__name {
+  width: 358px;
+  height: 27px;
+  padding-top: 54px;
+  border-bottom: 1px solid #CBCBCB;
+}
+
+@media screen and (max-width: 900px) {
+  .popup__name {
+  width: 238px;
+  height: 27px;
+  padding-top: 75px;
+  }
+}
