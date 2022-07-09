@@ -7,3 +7,5 @@ JS, CSS, HTML, макет Figma
 
 ### Необходимый инструментарий для просмотра проекта
 Любой современный браузер, предпочтение Chrome.
+
+https://olegmalyshkov.github.io/mesto/index.html
