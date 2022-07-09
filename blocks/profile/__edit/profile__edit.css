@@ -1,10 +1,17 @@
 .profile__edit {
-  max-width: 10px;
-  width: 100%;
-  padding: 6px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
   border: 1px solid #FFFFFF;
   margin-left: 18px;
-  justify-content: flex-end;
+  background-color: transparent;
+  padding: 0;
+  background-image: url('../../../images/profile-edit.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
 }
 
 .profile__edit:hover {
@@ -14,8 +21,9 @@
 
 @media screen and (max-width: 900px) {
   .profile__edit {
-    max-width: 7px;
-    padding: 5px 5px;
+    min-width: 18px;
+    min-height: 18px;
     margin-left: 10px;
+    background-size: 7px;
   }
 }
