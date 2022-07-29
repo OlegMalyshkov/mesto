@@ -1,0 +1,13 @@
+.popup__view {
+  max-width: 75vw;
+  max-height: 75vh;
+  width: 100%;
+  z-index: 1;
+}
+
+@media screen and (max-width: 900px) {
+  .popup__view {
+    max-width: 240px;
+    max-height: 299px;
+  }
+}

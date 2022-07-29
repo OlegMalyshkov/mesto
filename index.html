@@ -25,49 +25,7 @@
       <button class="profile__add" type="button"></button>
     </section>
     <section class="elements">
-      <ul class="elements__list">
-        <li class="card">
-          <img class="card__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-          <div class="card__location">
-            <h2 class="card__place">Карачаевск</h2>
-            <button class="card__like" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-          <div class="card__location">
-            <h2 class="card__place">Гора Эльбрус</h2>
-            <button class="card__like" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/dombai.jpg" alt="Домбай">
-          <div class="card__location">
-            <h2 class="card__place">Домбай</h2>
-            <button class="card__like" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-          <div class="card__location">
-            <h2 class="card__place">Гора Эльбрус</h2>
-            <button class="card__like" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/dombai.jpg" alt="Домбай">
-          <div class="card__location">
-            <h2 class="card__place">Домбай</h2>
-            <button class="card__like" type="button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/cherkesiya.jpg" alt="Карачево-Черкессия">
-          <div class="card__location">
-            <h2 class="card__place">Карачаево-Черкессия</h2>
-            <button class="card__like" type="button"></button>
-          </div>
-        </li>
+      <ul class="elements__list">     
       </ul>
     </section>
   </main>
@@ -85,6 +43,34 @@
         </form>
     </div>
   </div>
+  <div class="popup" id="popup">
+    <div class="popup__container">
+      <button class="popup__close" aria-label="Закрыть модальное окно" type="button" id="popup__close"></button>
+      <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="card-info" id="card-form">
+          <input class="popup__input" type="text" name="name" id="name" placeholder="Название">
+          <input class="popup__input popup__input_type_profession" type="text" name="clarify" id="clarify" placeholder="Ссылка на картинку">
+          <button class="popup__submit" type="submit">Создать</button>
+        </form>
+    </div>
+  </div>
+  <div class="popup popup__background-image" id="popup-image">
+    <div class="popup__container popup__container_img">
+      <button class="popup__close popup__close_img" aria-label="Закрыть модальное окно" type="button" id="popup-close-image"></button>
+      <img class="popup__view" src="" alt="Картинка" id="card-image">
+      <p class="popup__text" id="image-place"></p>
+    </div>
+  </div>
+  <template id="newcard">
+    <li class="card" id="card">
+      <img class="card__image" src="" alt="Картинка">
+      <button class="card__delete" type="button" id="del-card"></button>
+      <div class="card__location">
+        <h2 class="card__place"></h2>
+        <button class="card__like" type="button"></button>
+      </div>
+    </li>
+  </template>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
