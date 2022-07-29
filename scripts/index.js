@@ -44,8 +44,8 @@ const initialCards = [
 
 const cards = {
   form: '#card-form',
-  inputName: '#name',
-  inputLink: '#clarify',
+  inputName: '#place-name',
+  inputLink: '#clarify-link',
   template: '#newcard',
   item: '#card',
   image: '.card__image',

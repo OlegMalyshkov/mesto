@@ -48,8 +48,8 @@
       <button class="popup__close" aria-label="Закрыть модальное окно" type="button" id="popup__close"></button>
       <h2 class="popup__title">Новое место</h2>
         <form class="popup__form" name="card-info" id="card-form">
-          <input class="popup__input" type="text" name="name" id="name" placeholder="Название">
-          <input class="popup__input popup__input_type_profession" type="text" name="clarify" id="clarify" placeholder="Ссылка на картинку">
+          <input class="popup__input" type="text" name="place-name" id="place-name" placeholder="Название">
+          <input class="popup__input popup__input_type_profession" type="text" name="clarify-link" id="clarify-link" placeholder="Ссылка на картинку">
           <button class="popup__submit" type="submit">Создать</button>
         </form>
     </div>
@@ -57,13 +57,13 @@
   <div class="popup popup__background-image" id="popup-image">
     <div class="popup__container popup__container_img">
       <button class="popup__close popup__close_img" aria-label="Закрыть модальное окно" type="button" id="popup-close-image"></button>
-      <img class="popup__view" src="" alt="Картинка" id="card-image">
+      <img class="popup__view" src="./images/elbrus.jpg" alt="Картинка" id="card-image">
       <p class="popup__text" id="image-place"></p>
     </div>
   </div>
   <template id="newcard">
     <li class="card" id="card">
-      <img class="card__image" src="" alt="Картинка">
+      <img class="card__image" src="./images/dombai.jpg" alt="Картинка">
       <button class="card__delete" type="button" id="del-card"></button>
       <div class="card__location">
         <h2 class="card__place"></h2>
