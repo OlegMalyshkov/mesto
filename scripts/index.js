@@ -2,9 +2,7 @@ const popupEditor = document.querySelector(".profile__edit");
 const popupAddCard = document.querySelector("#popup");
 const popupOpen = document.querySelector(".profile-popup");
 const popupOpenImage = document.querySelector('#popup-image');
-const popupClose = document.querySelectorAll(".popup__close");
-const popupCloseCard = document.querySelector("#popup__close")
-const popupCloseImage = document.querySelector("#popup-close-image");
+const popupCloseButtons = document.querySelectorAll(".popup__close");
 const popupSubmit = document.querySelector(".popup__submit");
 const inputTitle = document.querySelector(".popup__input");
 const profileTitle = document.querySelector('.profile__title');
@@ -139,7 +137,7 @@ function addPopup() {
   openPopup(popupAddCard);
 }
 
-popupClose.forEach((button) => {
+popupCloseButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopupAll(popup));
 });
