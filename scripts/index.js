@@ -96,7 +96,6 @@ function createCard(date) {
     openPopup(popupOpenImage);
   });
 
-  closePopupAll(popupAddCard);
   return cardElement;
 }
 
@@ -115,6 +114,7 @@ function addEventListener() {
     }
     list.prepend(createCard(newCardDate));
     evt.target.reset();
+    closePopupAll(popupAddCard);
   });
 }
 
