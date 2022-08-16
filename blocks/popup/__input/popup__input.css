@@ -8,6 +8,7 @@
   margin-top: 30px;
   padding: 0px 0px 10px;
   border-bottom: 1px solid #CBCBCB;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 900px) {

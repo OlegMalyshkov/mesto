@@ -64,10 +64,28 @@ popupAdd.addEventListener("click", addPopup);
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
+  popup.addEventListener('click', closePopupOverlay);
 }
 
 function closePopupAll(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
+  popup.removeEventListener('click', closePopupOverlay);
+}
+
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopupAll(popup);
+  }
+}
+
+function closePopupOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    const popup = document.querySelector('.popup_opened');
+    closePopupAll(popup);
+  }
 }
 
 function createCard(date) {
@@ -140,4 +158,13 @@ function addPopup() {
 popupCloseButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopupAll(popup));
+});
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
 });
