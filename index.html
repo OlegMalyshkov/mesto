@@ -37,9 +37,9 @@
       <button class="popup__close" aria-label="Закрыть модальное окно" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="user-info" id="user-form">
-          <input class="popup__input" type="text" name="name" id="name" minlength="2" maxlength="40" required>
+          <input class="popup__input" type="text" name="name" id="name" minlength="2" maxlength="40" required placeholder="Имя">
           <span class="popup__span name-error"></span>
-          <input class="popup__input popup__input_type_profession" type="text" name="clarify" id="clarify" minlength="2" maxlength="200" required>
+          <input class="popup__input popup__input_type_profession" type="text" name="clarify" id="clarify" minlength="2" maxlength="200" required placeholder="О себе">
           <span class="popup__notification clarify-error"></span>
           <button class="popup__submit" type="submit">Сохранить</button>
         </form>
@@ -76,6 +76,7 @@
     </li>
   </template>
 <script src="./scripts/validate.js"></script>
+<script src="./scripts/initialCards.js"></script>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
