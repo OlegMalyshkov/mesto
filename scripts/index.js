@@ -26,11 +26,11 @@ const cardsContainer = {
   list: '.elements__list'
 }
 
-const profileForm = document.querySelector(cardsContainer.form);
+const cardForm = document.querySelector(cardsContainer.form);
 const list = document.querySelector(cardsContainer.list);
 const template = document.querySelector(cardsContainer.template).content.querySelector(cardsContainer.item);
-const inputName = profileForm.querySelector(cardsContainer.inputName);
-const inputLink = profileForm.querySelector(cardsContainer.inputLink);
+const inputName = cardForm.querySelector(cardsContainer.inputName);
+const inputLink = cardForm.querySelector(cardsContainer.inputLink);
 
 popupProfileOpenButton.addEventListener("click", popupEditorAdd);
 userProfileForm.addEventListener("submit", submitProfileForm);
@@ -95,7 +95,7 @@ initialCards.forEach((item) => {
   list.prepend(createCard(item));
 });
 
-  profileForm.addEventListener('submit', function(evt) {
+cardForm.addEventListener('submit', function(evt) {
     evt.preventDefault();
     const newCardDate = {
     name: inputName.value,
@@ -103,6 +103,10 @@ initialCards.forEach((item) => {
     }
     list.prepend(createCard(newCardDate));
     evt.target.reset();
+    const form = document.querySelector('#card-form');
+    const button = form.querySelector('.popup__submit'); 
+    const inputs = Array.from(form.querySelectorAll('.popup__input')); 
+    toggleButtonState(inputs, button);
     closePopup(popupAddCard);
   });
 

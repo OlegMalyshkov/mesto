@@ -41,7 +41,7 @@ const hasInvalidInput = (inputList) => {
 
 //  для стилизации кнопки
 
-const toggleButtonState = (inputList, buttonElement,) => {
+const toggleButtonState = (inputList, buttonElement) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
@@ -81,7 +81,6 @@ const enableValidation = ({formSelector, ...selectors}) => {
       // У каждой формы отменим стандартное поведение
       evt.preventDefault();
     });
-
     // Для каждой формы вызовем функцию setEventListeners,
     // передав ей элемент формы
     setEventListeners(formElement, selectors);
