@@ -1,3 +1,6 @@
+import Card from "../scripts/Card.js";
+import FormValidator from "./FormValidator.js";
+
 const popupProfileOpenButton = document.querySelector(".profile__edit");
 const popupAddCard = document.querySelector("#popup");
 const popupProfile = document.querySelector(".profile-popup");
@@ -7,28 +10,13 @@ const inputTitle = document.querySelector(".popup__input");
 const profileTitle = document.querySelector('.profile__title');
 const inputClarify = document.querySelector(".popup__input_type_profession");
 const profileSubtitle = document.querySelector(".profile__subtitle");
-const userProfileForm = document.getElementById("user-form");
+const userProfileForm = document.querySelector("#user-form");
 const popupAdd = document.querySelector(".profile__add");
 const viewCard = document.querySelector("#card-image");
 const placeImage = document.querySelector("#image-place");
 
-const cardsContainer = {
-  form: '#card-form',
-  inputName: '#place-name',
-  inputLink: '#clarify-link',
-  template: '#newcard',
-  item: '#card',
-  image: '.card__image',
-  location: '.card__location',
-  place: '.card__place',
-  like: '.card__like',
-  del: '#del-card',
-  list: '.elements__list'
-}
-
 const cardForm = document.querySelector(cardsContainer.form);
 const list = document.querySelector(cardsContainer.list);
-const template = document.querySelector(cardsContainer.template).content.querySelector(cardsContainer.item);
 const inputName = cardForm.querySelector(cardsContainer.inputName);
 const inputLink = cardForm.querySelector(cardsContainer.inputLink);
 
@@ -62,34 +50,11 @@ function closePopupOverlay(evt) {
   }
 }
 
-function createCard(date) {
-  const cardElement = template.cloneNode(true);
-  const deleteButtom = cardElement.querySelector(cardsContainer.del);
-  const likeButtom = cardElement.querySelector(cardsContainer.like);
-  const cardImage = cardElement.querySelector(cardsContainer.image);
-  const cardPlace = cardElement.querySelector(cardsContainer.place);
-  
-  cardImage.src = date.link;
-  cardImage.alt = date.name;
-  cardPlace.textContent = date.name;
+function createCard(cardData) {
+  const card = new Card(cardData, "#newcard");
 
-  deleteButtom.addEventListener('click', function() {
-    cardElement.remove();
-  });
-
-  likeButtom.addEventListener('click', function(){
-    likeButtom.classList.toggle('card__like_active');
-  });
-
-  cardImage.addEventListener('click', function(){
-    viewCard.src = cardImage.src;
-    placeImage.textContent = cardPlace.textContent;
-    viewCard.alt = cardPlace.textContent;
-    openPopup(popupOpenImage);
-  });
-
-  return cardElement;
-}
+  return card.createCard();
+};
 
 initialCards.forEach((item) => {
   list.prepend(createCard(item));
@@ -102,11 +67,7 @@ cardForm.addEventListener('submit', function(evt) {
     link: inputLink.value
     }
     list.prepend(createCard(newCardDate));
-    evt.target.reset();
-    const form = document.querySelector('#card-form');
-    const button = form.querySelector('.popup__submit'); 
-    const inputs = Array.from(form.querySelectorAll('.popup__input')); 
-    toggleButtonState(inputs, button);
+
     closePopup(popupAddCard);
   });
 
@@ -114,6 +75,15 @@ function popupEditorAdd() {
   openPopup(popupProfile);
   inputTitle.value = profileTitle.textContent;
   inputClarify.value = profileSubtitle.textContent;
+  
+  // прячем текст ошибки, если попап был с ней закрыт, а потом открыт снова
+  const inputs = Array.from(popupProfile.querySelectorAll('.popup__input'));
+  inputs.forEach((item) => {
+    elementValidationProfile.hideInputError(item);
+  });
+
+  // делаем кнопку неактивной при повторном открытии попапа после успешного сохранения
+  elementValidationProfile.toggleButtonState();
 }
 
 function submitProfileForm(event) {
@@ -125,6 +95,16 @@ function submitProfileForm(event) {
 
 function openAddCardPopup() {
   openPopup(popupAddCard);
+  cardForm.reset();
+
+  // делаем кнопку неактивной при повторном открытии попапа после успешного сохранения
+  elementValidationImage.toggleButtonState();
+
+  // прячем текст ошибки, если попап был с ней закрыт, а потом открыт снова
+  const inputs = Array.from(cardForm.querySelectorAll('.popup__input'));
+  inputs.forEach((item) => {
+    elementValidationImage.hideInputError(item);
+  })
 }
 
 popupCloseButtons.forEach((button) => {
@@ -132,10 +112,13 @@ popupCloseButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+// создаем экземпляры класса FormValidator
+const elementValidationProfile = new FormValidator(validationConfig, userProfileForm);
+const elementValidationImage = new FormValidator(validationConfig, cardForm);
+
+// вызваем функцию enableValidation на экземплярах
+elementValidationProfile.enableValidation();
+elementValidationImage.enableValidation();
+
+
+export {popupOpenImage, viewCard, placeImage, openPopup};
