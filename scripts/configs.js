@@ -9,7 +9,7 @@ const cardsContainer = {
   place: '.card__place',
   like: '.card__like',
   del: '#del-card',
-  list: '.elements__list'
+  wrapper: '.elements__list'
 };
 
 const validationConfig = {
@@ -19,3 +19,5 @@ const validationConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
+
+export {cardsContainer, validationConfig};

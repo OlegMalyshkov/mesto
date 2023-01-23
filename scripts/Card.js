@@ -1,3 +1,4 @@
+import { cardsContainer } from './configs.js';
 import {popupOpenImage, viewCard, placeImage, openPopup} from './index.js';
 
 export default class Card {

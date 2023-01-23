@@ -1,5 +1,7 @@
 import Card from "../scripts/Card.js";
 import FormValidator from "./FormValidator.js";
+import { initialCards } from "./initialCards.js";
+import { cardsContainer, validationConfig } from "./configs.js";
 
 const popupProfileOpenButton = document.querySelector(".profile__edit");
 const popupAddCard = document.querySelector("#popup");
@@ -16,7 +18,7 @@ const viewCard = document.querySelector("#card-image");
 const placeImage = document.querySelector("#image-place");
 
 const cardForm = document.querySelector(cardsContainer.form);
-const list = document.querySelector(cardsContainer.list);
+const wrapper = document.querySelector(cardsContainer.wrapper);
 const inputName = cardForm.querySelector(cardsContainer.inputName);
 const inputLink = cardForm.querySelector(cardsContainer.inputLink);
 
@@ -45,8 +47,7 @@ function closePopupEsc(evt) {
 
 function closePopupOverlay(evt) {
   if (evt.target === evt.currentTarget) {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
+    closePopup(evt.target);
   }
 }
 
@@ -57,7 +58,7 @@ function createCard(cardData) {
 };
 
 initialCards.forEach((item) => {
-  list.prepend(createCard(item));
+  wrapper.prepend(createCard(item));
 });
 
 cardForm.addEventListener('submit', function(evt) {
@@ -66,7 +67,7 @@ cardForm.addEventListener('submit', function(evt) {
     name: inputName.value,
     link: inputLink.value
     }
-    list.prepend(createCard(newCardDate));
+    wrapper.prepend(createCard(newCardDate));
 
     closePopup(popupAddCard);
   });
@@ -75,15 +76,8 @@ function popupEditorAdd() {
   openPopup(popupProfile);
   inputTitle.value = profileTitle.textContent;
   inputClarify.value = profileSubtitle.textContent;
-  
-  // прячем текст ошибки, если попап был с ней закрыт, а потом открыт снова
-  const inputs = Array.from(popupProfile.querySelectorAll('.popup__input'));
-  inputs.forEach((item) => {
-    elementValidationProfile.hideInputError(item);
-  });
 
-  // делаем кнопку неактивной при повторном открытии попапа после успешного сохранения
-  elementValidationProfile.toggleButtonState();
+  elementValidationProfile.resetValidation();
 }
 
 function submitProfileForm(event) {
@@ -97,14 +91,7 @@ function openAddCardPopup() {
   openPopup(popupAddCard);
   cardForm.reset();
 
-  // делаем кнопку неактивной при повторном открытии попапа после успешного сохранения
-  elementValidationImage.toggleButtonState();
-
-  // прячем текст ошибки, если попап был с ней закрыт, а потом открыт снова
-  const inputs = Array.from(cardForm.querySelectorAll('.popup__input'));
-  inputs.forEach((item) => {
-    elementValidationImage.hideInputError(item);
-  })
+  elementValidationImage.resetValidation();
 }
 
 popupCloseButtons.forEach((button) => {
